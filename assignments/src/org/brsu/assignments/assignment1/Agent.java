@@ -16,12 +16,16 @@ public class Agent {
   private MapPrinter mapPrinter;
   private Strategy strategy;
   private Position currentPosition;
+  private int maxNumberOfNodesToVisit;
+  private int numberOfStepsUntilSolved;
+  private boolean solved;
 
   public Agent() {
     localizer = new ElementLocalizer();
     visitedNodes = new LinkedList<Position>();
     nodesToExplore = new LinkedList<Position>();
     mapPrinter = new MapPrinter();
+    solved = false;
   }
 
   public void exploreMap(List<List<String>> originMap, String outputFile,
@@ -35,6 +39,10 @@ public class Agent {
 
   private void explore(String outputFile, List<List<String>> map) {
     while (localizer.isDirtLeft(map)) {
+      numberOfStepsUntilSolved++;
+      if (nodesToExplore.size() > maxNumberOfNodesToVisit) {
+        maxNumberOfNodesToVisit = nodesToExplore.size();
+      }
       visitedNodes.add(currentPosition);
       map.get(currentPosition.getRow()).set(currentPosition.getColumn(), ROBOT);
       addNeighboursToExploreList(map, currentPosition);
@@ -42,13 +50,18 @@ public class Agent {
       map.get(currentPosition.getRow()).set(currentPosition.getColumn(),
           VISITED);
       if (nodesToExplore.isEmpty()) {
-        return;
+        break;
       }
-      updateState();
+      updateStateDependingOnStrategy();
     }
+    if (!localizer.isDirtLeft(map)) {
+      solved = true;
+    }
+    mapPrinter.printResult(map, maxNumberOfNodesToVisit,
+        numberOfStepsUntilSolved, solved, outputFile);
   }
 
-  private void updateState() {
+  private void updateStateDependingOnStrategy() {
     if (strategy == Strategy.DEPTH_FIRST) {
       currentPosition = nodesToExplore.get(nodesToExplore.size() - 1);
       nodesToExplore.remove(nodesToExplore.size() - 1);
@@ -68,15 +81,18 @@ public class Agent {
 
   private void addNeighboursToExploreList(List<List<String>> map,
       Position currentPosition) {
-    for (Position position : localizer.getNeighboursOfElement(currentPosition,
-        map)) {
-      if (!visitedNodes.contains(position)
-          && !nodesToExplore.contains(position)) {
-        String element = map.get(position.getRow()).get(position.getColumn());
-        if (element.equals(DIRT) || element.equals(EMPTY)) {
-          nodesToExplore.add(position);
-        }
+    List<Position> neighboursOfElement = localizer.getNeighboursOfElement(
+        currentPosition, map);
+    for (Position neighbour : neighboursOfElement) {
+      if (visitedNodes.contains(neighbour)
+          || nodesToExplore.contains(neighbour)) {
+        continue;
       }
+      String element = map.get(neighbour.getRow()).get(neighbour.getColumn());
+      if (element.equals(DIRT) || element.equals(EMPTY)) {
+        nodesToExplore.add(neighbour);
+      }
+
     }
   }
 }

@@ -61,12 +61,32 @@ public class MapPrinter {
   public void clearFile(String filename) {
     PrintWriter writer;
     try {
+      writer = new PrintWriter(filename + "_result.txt");
+      writer.close();
       writer = new PrintWriter(filename);
-      // writer.print("");
       writer.close();
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
+  }
 
+  public void printResult(List<List<String>> map, int maxNumberOfNodesToVisit,
+      int numberOfStepsUntilSolved, boolean solved, String outputFile) {
+    PrintWriter writer;
+    try {
+      writer = new PrintWriter(new BufferedWriter(new FileWriter(outputFile
+          + "_result.txt", true)));
+      writer.print(String.format(
+          "Steps needed: %d\nMaximum nodes stored: %d\nAll fields clean: %s\n",
+          numberOfStepsUntilSolved, maxNumberOfNodesToVisit, solved));
+      writer.close();
+      printMapToFile(map, outputFile + "_result.txt");
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
