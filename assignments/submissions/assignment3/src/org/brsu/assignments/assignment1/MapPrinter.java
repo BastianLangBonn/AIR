@@ -71,18 +71,14 @@ public class MapPrinter {
   }
 
   public void printResult(List<List<String>> map, int maxNumberOfNodesToVisit,
-      int numberOfStepsUntilSolved, int maxNumberOfNodesVisited,
-      boolean solved, long timeTaken, String outputFile) {
+      int numberOfStepsUntilSolved, boolean solved, String outputFile) {
     PrintWriter writer;
     try {
       writer = new PrintWriter(new BufferedWriter(new FileWriter(outputFile
           + "_result.txt", true)));
-      writer
-          .print(String
-              .format(
-                  "Steps needed: %d\nMaximum nodes to visit stored: %d\nMaximum nodes visited stored: %d\nAll fields clean: %s\nTime taken: %d\n",
-                  numberOfStepsUntilSolved, maxNumberOfNodesToVisit,
-                  maxNumberOfNodesVisited, solved, timeTaken));
+      writer.print(String.format(
+          "Steps needed: %d\nMaximum nodes stored: %d\nAll fields clean: %s\n",
+          numberOfStepsUntilSolved, maxNumberOfNodesToVisit, solved));
       writer.close();
       printMapToFile(map, outputFile + "_result.txt");
     } catch (FileNotFoundException e) {

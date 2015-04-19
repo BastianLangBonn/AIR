@@ -18,7 +18,6 @@ public class Agent {
   private Position currentPosition;
   private int maxNumberOfNodesToVisit;
   private int numberOfStepsUntilSolved;
-  private int maxNumberOfNodesVisited;
   private boolean solved;
 
   public Agent() {
@@ -35,13 +34,7 @@ public class Agent {
     this.strategy = strategy;
     List<List<String>> map = createDeepCopyOfMap(originMap);
     currentPosition = localizer.localizeElement(START_POSITION, map);
-    long startTime = System.currentTimeMillis();
     explore(outputFile, map);
-    long endTime = System.currentTimeMillis();
-    long timeTaken = endTime - startTime;
-    mapPrinter.printResult(map, maxNumberOfNodesToVisit,
-        numberOfStepsUntilSolved, maxNumberOfNodesVisited, solved, timeTaken,
-        outputFile);
   }
 
   private void explore(String outputFile, List<List<String>> map) {
@@ -51,9 +44,6 @@ public class Agent {
         maxNumberOfNodesToVisit = nodesToExplore.size();
       }
       visitedNodes.add(currentPosition);
-      if (visitedNodes.size() > maxNumberOfNodesToVisit) {
-        maxNumberOfNodesVisited++;
-      }
       map.get(currentPosition.getRow()).set(currentPosition.getColumn(), ROBOT);
       addNeighboursToExploreList(map, currentPosition);
       mapPrinter.printMapToFile(map, outputFile);
@@ -62,14 +52,16 @@ public class Agent {
       if (nodesToExplore.isEmpty()) {
         break;
       }
-      updateExploreListDependingOnStrategy();
+      updateStateDependingOnStrategy();
     }
     if (!localizer.isDirtLeft(map)) {
       solved = true;
     }
+    mapPrinter.printResult(map, maxNumberOfNodesToVisit,
+        numberOfStepsUntilSolved, solved, outputFile);
   }
 
-  private void updateExploreListDependingOnStrategy() {
+  private void updateStateDependingOnStrategy() {
     if (strategy == Strategy.DEPTH_FIRST) {
       currentPosition = nodesToExplore.get(nodesToExplore.size() - 1);
       nodesToExplore.remove(nodesToExplore.size() - 1);
