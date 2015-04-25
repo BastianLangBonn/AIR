@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.brsu.assignments.model.Position;
+import org.brsu.assignments.model.Strategy;
+import org.brsu.assignments.utils.ElementLocalizer;
+import org.brsu.assignments.utils.MapPrinter;
+
 public class Agent {
   private static final String ROBOT = "r";
   private static final String VISITED = "°";

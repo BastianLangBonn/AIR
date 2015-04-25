@@ -1,4 +1,4 @@
-package org.brsu.assignments.assignment1;
+package org.brsu.assignments.utils;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

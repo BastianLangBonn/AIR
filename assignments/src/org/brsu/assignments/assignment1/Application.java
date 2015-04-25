@@ -3,6 +3,9 @@ package org.brsu.assignments.assignment1;
 import java.io.IOException;
 import java.util.List;
 
+import org.brsu.assignments.model.Strategy;
+import org.brsu.assignments.utils.MapReader;
+
 public class Application {
 
   public static void main(String[] args) throws IOException {

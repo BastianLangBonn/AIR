@@ -1,4 +1,4 @@
-package org.brsu.assignments.assignment1;
+package org.brsu.assignments.utils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

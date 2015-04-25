@@ -1,7 +1,10 @@
-package org.brsu.assignments.assignment1;
+package org.brsu.assignments.utils;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.brsu.assignments.model.Map;
+import org.brsu.assignments.model.Position;
 
 /**
  * Class to localize certain elements in a given map.
@@ -90,5 +93,9 @@ public class ElementLocalizer {
       }
     }
     return false;
+  }
+
+  public Position localizeElement(String element, Map arenaMap) {
+    return localizeElement(element, arenaMap.getListRepresentation());
   }
 }
