@@ -1,9 +1,17 @@
-package org.brsu.assignments.model;
+package org.brsu.assignments.assignment4.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.brsu.assignments.model.Position;
+
+/**
+ * Class representing a node of the search problem
+ * 
+ * @author bastian
+ * 
+ */
 public class Node {
 
   private Position position;
@@ -56,21 +64,5 @@ public class Node {
   @Override
   public String toString() {
     return String.format("Position: %s, Path: %s", position.toString(), path.toString());
-  }
-
-  public static void main(String[] args) {
-    ArrayList<Position> path = new ArrayList<Position>();
-    path.add(new Position(1, 1));
-    path.add(new Position(1, 2));
-    path.add(new Position(1, 3));
-    path.add(new Position(1, 4));
-    Node a = new Node(new Position(1, 5), path);
-    path.add(new Position(1, 3));
-    Node b = new Node(new Position(1, 5), path);
-
-    System.out.println(a.equals(b));
-    System.out.println(a.getPath());
-    System.out.println(b.getPath());
-
   }
 }

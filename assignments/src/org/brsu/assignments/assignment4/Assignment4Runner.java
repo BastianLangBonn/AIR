@@ -7,8 +7,15 @@ import org.brsu.assignments.model.Map;
 import org.brsu.assignments.model.Position;
 import org.brsu.assignments.utils.ElementLocalizer;
 import org.brsu.assignments.utils.MapReader;
-import org.brsu.assignments.visualization.MainFrame;
+import org.brsu.assignments.visualization.MapVisualizationFrame;
 
+/**
+ * Class initializing and running the {@link IterativeDeepeningAgent} on the
+ * three given maps.
+ * 
+ * @author bastian
+ * 
+ */
 public class Assignment4Runner {
 
   private MapReader mapReader;
@@ -21,31 +28,20 @@ public class Assignment4Runner {
   }
 
   public static void main(String[] args) throws Exception {
-    // agent = new IterativeDeepeningAgent();
-    // MapReader mapReader = new MapReader();
-    //
-    // List<List<String>> map2 =
-    // mapReader.readMapFromFile("resources/assignment4/maps/map2.txt");
-    // List<List<String>> map3 =
-    // mapReader.readMapFromFile("resources/assignment4/maps/map3.txt");
-    //
-    // Position startPosition2 = elementLocalizer.localizeElement("s", map2);
-    // Position startPosition3 = elementLocalizer.localizeElement("s", map3);
-    //
-    // List<Position> path2 = agent.searchMapForTarget(new Map(map2),
-    // startPosition2, "1");
-    // List<Position> path3 = agent.searchMapForTarget(new Map(map3),
-    // startPosition3, "1");
-    //
-    // // new MainFrame(new Map(map2), startPosition1, path2);
-    // // new MainFrame(new Map(map3), startPosition1, path3);
-    //
-    // System.out.println(path2);
+
+    if (args.length != 1) {
+      System.err.println("Please start program with parameter \"map1\", \"map2\" or \"map3\".");
+      return;
+    }
 
     Assignment4Runner runner = new Assignment4Runner();
-    runner.runMap("resources/assignment4/maps/map1.txt");
-    // runner.runMap("resources/assignment4/maps/map2.txt");
-    // runner.runMap("resources/assignment4/maps/map3.txt");
+    if (args[0].equals("map1")) {
+      runner.runMap("resources/assignment4/maps/map1.txt");
+    } else if (args[0].equals("map2")) {
+      runner.runMap("resources/assignment4/maps/map2.txt");
+    } else if (args[0].equals("map3")) {
+      runner.runMap("resources/assignment4/maps/map3.txt");
+    }
   }
 
   public void runMap(String filename) throws Exception {
@@ -63,6 +59,10 @@ public class Assignment4Runner {
       }
       paths.add(agent.searchMapForTarget(new Map(map), startPosition, String.valueOf(target)));
     }
-    new MainFrame(new Map(map), paths);
+    new MapVisualizationFrame(new Map(map), paths);
+
+    System.out.println(String.format("Numbers of Nodes to expand stored at once: %d.",
+        agent.getMaxNumberOfNodesToExpand()));
+    System.out.println(String.format("Number of nodes visited: %d", agent.getNodesVisited()));
   }
 }

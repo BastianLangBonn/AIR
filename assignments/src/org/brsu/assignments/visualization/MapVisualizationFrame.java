@@ -2,18 +2,20 @@ package org.brsu.assignments.visualization;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import org.brsu.assignments.model.Map;
 import org.brsu.assignments.model.Position;
-import org.brsu.assignments.utils.MapReader;
 
-public class MainFrame extends JFrame {
+/**
+ * Class to display a map and the path the algorithm found.
+ * 
+ * @author bastian
+ * 
+ */
+public class MapVisualizationFrame extends JFrame {
 
   private static final int FIELD_WIDTH = 10;
   private static final int FIELD_HEIGHT = 15;
@@ -21,7 +23,7 @@ public class MainFrame extends JFrame {
   private Map map;
   private List<List<Position>> paths;
 
-  public MainFrame(Map map, List<List<Position>> paths) {
+  public MapVisualizationFrame(Map map, List<List<Position>> paths) {
     this.map = map;
     this.paths = paths;
     setVisible(true);
@@ -75,19 +77,5 @@ public class MainFrame extends JFrame {
         g.drawString(map.getElementAtPosition(x, y), 10 + x * FIELD_WIDTH, 10 + y * FIELD_HEIGHT);
       }
     }
-  }
-
-  public static void main(String[] args) throws IOException, InterruptedException {
-    MapReader reader = new MapReader();
-    List<List<String>> mapList = reader.readMapFromFile("resources/assignment4/maps/map1.txt");
-    Map map = new Map(mapList);
-    ArrayList<Position> path = new ArrayList<Position>();
-    path.add(new Position(1, 1));
-    path.add(new Position(1, 2));
-    path.add(new Position(1, 3));
-    path.add(new Position(2, 3));
-    LinkedList<List<Position>> paths = new LinkedList<List<Position>>();
-    paths.add(path);
-    MainFrame frame = new MainFrame(map, paths);
   }
 }

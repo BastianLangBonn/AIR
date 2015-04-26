@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.brsu.assignments.assignment4.model.Node;
 import org.brsu.assignments.model.Map;
-import org.brsu.assignments.model.Node;
 import org.brsu.assignments.model.Position;
 import org.brsu.assignments.utils.ElementLocalizer;
-import org.brsu.assignments.utils.MapPrinter;
-import org.brsu.assignments.utils.MapReader;
-import org.brsu.assignments.visualization.MainFrame;
 
 /**
  * Class that explores a map using the iterative deepening depth first approach.
@@ -27,17 +24,21 @@ public class IterativeDeepeningAgent {
   private LinkedList<Node> nodesToExpand;
   private LinkedList<Position> visitedPositions;
   private Node currentNode;
+  private int nodesVisited;
+  private int maxNumberOfNodesToExpand;
+  private int depthLimit;
 
   // private MainFrame mainFrame;
 
   public IterativeDeepeningAgent() {
     elementLocalizer = new ElementLocalizer();
+    nodesVisited = 0;
+    maxNumberOfNodesToExpand = 0;
   }
 
   public List<Position> searchMapForTarget(Map map, Position startPosition, String target) throws InterruptedException {
     this.map = map;
-    // mainFrame = new MainFrame(map, startPosition, new ArrayList<Position>());
-    int depthLimit = 0;
+    depthLimit = 0;
     boolean depthLimitReached;
     do {
       depthLimitReached = false;
@@ -48,7 +49,8 @@ public class IterativeDeepeningAgent {
         // update current node
         currentNode = nodesToExpand.get(nodesToExpand.size() - 1);
         nodesToExpand.remove(nodesToExpand.size() - 1);
-
+        // increase node counter
+        nodesVisited++;
         // goal test
         String elementAtCurrentPosition = map.getElementAtPosition(currentNode.getPosition());
         if (elementAtCurrentPosition.equals(target)) {
@@ -92,28 +94,17 @@ public class IterativeDeepeningAgent {
         nodesToExpand.add(neighbourNode);
       }
     }
+    if (nodesToExpand.size() > maxNumberOfNodesToExpand) {
+      maxNumberOfNodesToExpand = nodesToExpand.size();
+    }
   }
 
-  public static void main(String[] args) throws Exception {
-    IterativeDeepeningAgent agent = new IterativeDeepeningAgent();
-    MapReader reader = new MapReader();
-    List<List<String>> map = reader.readMapFromFile("resources/assignment4/maps/map2.txt");
-    ElementLocalizer localizer = new ElementLocalizer();
-    Position startPosition = localizer.localizeElement("s", map);
-    List<Position> path = agent.searchMapForTarget(new Map(map), startPosition, "1");
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "2"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "3"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "4"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "5"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "6"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "7"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "8"));
-    path.addAll(agent.searchMapForTarget(new Map(map), path.get(path.size() - 1), "9"));
-    new MapPrinter().printMap(map);
-    System.out.println(path);
-    System.out.println(path.size());
-    LinkedList<List<Position>> paths = new LinkedList<List<Position>>();
-    paths.add(path);
-    new MainFrame(new Map(map), paths);
+  public int getNodesVisited() {
+    return nodesVisited;
   }
+
+  public int getMaxNumberOfNodesToExpand() {
+    return maxNumberOfNodesToExpand;
+  }
+
 }
