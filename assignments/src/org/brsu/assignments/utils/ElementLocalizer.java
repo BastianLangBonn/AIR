@@ -1,5 +1,6 @@
 package org.brsu.assignments.utils;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,8 +31,7 @@ public class ElementLocalizer {
         return new Position(i, map.get(i).indexOf(element));
       }
     }
-    throw new IllegalArgumentException(String.format(
-        "Element %s not found in map.", element));
+    throw new IllegalArgumentException(String.format("Element %s not found in map.", element));
   }
 
   /**
@@ -42,8 +42,7 @@ public class ElementLocalizer {
    * @param map
    * @return
    */
-  public List<Position> getNeighboursOfElement(Position elementPosition,
-      List<List<String>> map) {
+  public List<Position> getNeighboursOfElement(Position elementPosition, List<List<String>> map) {
     List<Position> result = new LinkedList<Position>();
     checkTopPosition(elementPosition, map, result);
     checkRightPosition(elementPosition, map, result);
@@ -52,35 +51,27 @@ public class ElementLocalizer {
     return result;
   }
 
-  private void checkRightPosition(Position elementPosition,
-      List<List<String>> map, List<Position> result) {
+  private void checkRightPosition(Position elementPosition, List<List<String>> map, List<Position> result) {
     if (elementPosition.getColumn() < map.get(0).size() - 1) {
-      result.add(new Position(elementPosition.getRow(), elementPosition
-          .getColumn() + 1));
+      result.add(new Position(elementPosition.getRow(), elementPosition.getColumn() + 1));
     }
   }
 
-  private void checkLeftPosition(Position elementPosition,
-      List<List<String>> map, List<Position> result) {
+  private void checkLeftPosition(Position elementPosition, List<List<String>> map, List<Position> result) {
     if (elementPosition.getColumn() > 0) {
-      result.add(new Position(elementPosition.getRow(), elementPosition
-          .getColumn() - 1));
+      result.add(new Position(elementPosition.getRow(), elementPosition.getColumn() - 1));
     }
   }
 
-  private void checkBottomPosition(Position elementPosition,
-      List<List<String>> map, List<Position> result) {
+  private void checkBottomPosition(Position elementPosition, List<List<String>> map, List<Position> result) {
     if (elementPosition.getRow() < map.size() - 1) {
-      result.add(new Position(elementPosition.getRow() + 1, elementPosition
-          .getColumn()));
+      result.add(new Position(elementPosition.getRow() + 1, elementPosition.getColumn()));
     }
   }
 
-  private void checkTopPosition(Position elementPosition,
-      List<List<String>> map, List<Position> result) {
+  private void checkTopPosition(Position elementPosition, List<List<String>> map, List<Position> result) {
     if (elementPosition.getRow() > 0) {
-      result.add(new Position(elementPosition.getRow() - 1, elementPosition
-          .getColumn()));
+      result.add(new Position(elementPosition.getRow() - 1, elementPosition.getColumn()));
     }
   }
 
@@ -97,5 +88,28 @@ public class ElementLocalizer {
 
   public Position localizeElement(String element, Map arenaMap) {
     return localizeElement(element, arenaMap.getListRepresentation());
+  }
+
+  /**
+   * Check for integers in map and return them in sorted order.
+   * 
+   * @param map
+   * @return
+   */
+  public List<Integer> findTargetsInMap(Map map) {
+    LinkedList<Integer> result = new LinkedList<Integer>();
+    for (int x = 0; x < map.getWidth(); x++) {
+      for (int y = 0; y < map.getHeight(); y++) {
+        String element = map.getElementAtPosition(x, y);
+        try {
+          int parsedInteger = Integer.parseInt(element);
+          result.add(parsedInteger);
+        } catch (NumberFormatException e) {
+          // NOOP
+        }
+      }
+    }
+    Collections.sort(result);
+    return result;
   }
 }

@@ -23,7 +23,7 @@ public class Map {
    * @param position
    * @return
    */
-  public String getPosition(Position position) {
+  public String getElementAtPosition(Position position) {
     return map.get(position.getRow()).get(position.getColumn());
   }
 
@@ -62,7 +62,7 @@ public class Map {
     return map;
   }
 
-  public String getPosition(int x, int y) {
+  public String getElementAtPosition(int x, int y) {
     return map.get(y).get(x);
   }
 }
