@@ -36,9 +36,9 @@ public class GameLogic {
     } else if (action == Action.RIGHT) {
       neighbourPosition = new Position(emptyPosition.getRow(), emptyPosition.getColumn() + 1);
     } else if (action == Action.UP) {
-      neighbourPosition = new Position(emptyPosition.getRow() + 1, emptyPosition.getColumn());
-    } else {
       neighbourPosition = new Position(emptyPosition.getRow() - 1, emptyPosition.getColumn());
+    } else {
+      neighbourPosition = new Position(emptyPosition.getRow() + 1, emptyPosition.getColumn());
     }
     List<List<Tile>> board = game.getBoard();
     Tile neighbourTile = board.get(neighbourPosition.getRow()).get(neighbourPosition.getColumn());
