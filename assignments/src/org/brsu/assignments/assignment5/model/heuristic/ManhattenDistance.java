@@ -1,7 +1,9 @@
-package org.brsu.assignments.assignment5.model;
+package org.brsu.assignments.assignment5.model.heuristic;
 
 import java.util.List;
 
+import org.brsu.assignments.assignment5.model.Game;
+import org.brsu.assignments.assignment5.model.Tile;
 import org.brsu.assignments.model.Position;
 
 public class ManhattenDistance extends Heuristic {

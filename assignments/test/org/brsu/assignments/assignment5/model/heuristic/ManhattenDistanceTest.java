@@ -1,7 +1,9 @@
-package org.brsu.assignments.assignment5.model;
+package org.brsu.assignments.assignment5.model.heuristic;
 
 import static org.junit.Assert.assertEquals;
 
+import org.brsu.assignments.assignment5.model.Game;
+import org.brsu.assignments.assignment5.model.heuristic.ManhattenDistance;
 import org.junit.Test;
 
 public class ManhattenDistanceTest {

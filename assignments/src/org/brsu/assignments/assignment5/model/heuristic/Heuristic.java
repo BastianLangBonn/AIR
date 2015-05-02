@@ -1,4 +1,6 @@
-package org.brsu.assignments.assignment5.model;
+package org.brsu.assignments.assignment5.model.heuristic;
+
+import org.brsu.assignments.assignment5.model.Game;
 
 public abstract class Heuristic {
 
