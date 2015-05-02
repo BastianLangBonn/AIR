@@ -46,4 +46,17 @@ public class GameLogic {
     board.get(emptyPosition.getRow()).set(emptyPosition.getColumn(), neighbourTile);
     return game;
   }
+
+  public boolean performGoalTest(Game game) {
+    List<List<Tile>> board = game.getBoard();
+    for (List<Tile> row : board) {
+      for (Tile tile : row) {
+        Position tilePosition = game.getPositionOfTile(tile);
+        if (!tilePosition.equals(tile.getTargetPosition())) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 }

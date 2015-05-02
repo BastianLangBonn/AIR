@@ -1,6 +1,7 @@
 package org.brsu.assignments.assignment5.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -16,6 +17,20 @@ public class GameLogicTest {
   @Before
   public void setUp() {
     subject = new GameLogic();
+  }
+
+  @Test
+  public void performGoalTest_goalState_true() {
+    Game game = new Game("1,2,3,4,5,6,7,8,0");
+    boolean success = subject.performGoalTest(game);
+    assertTrue("Game state is goal state but was not recognized.", success);
+  }
+
+  @Test
+  public void performGoalTest_nonGoalState_false() {
+    Game game = new Game("1,2,3,4,0,5,6,7,8");
+    boolean success = subject.performGoalTest(game);
+    assertFalse("Game state is not goal state but was recognized as one.", success);
   }
 
   @Test
