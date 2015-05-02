@@ -1,0 +1,10 @@
+To run the code:
+- open terminal and change to src-directory
+- compile java code using 'javac org/brsu/assignments/assignment4/Assignment4Runner.java'
+- run code using 'java org.brsu.assignments.assignment4.Assignment4Runner "<mapname>"'
+
+The last command takes one of the following arguments: "map1", "map2", "map3"
+After running the command the application will run the algorithm on the map. After the computation
+of the path has finished, statistics are printed to the console and a frame opens, displaying
+the map and the path found.
+Map 3 takes longer to compute than the other two maps.
