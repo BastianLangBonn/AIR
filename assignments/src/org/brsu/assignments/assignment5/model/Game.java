@@ -11,15 +11,15 @@ import org.brsu.assignments.model.Position;
  * @author bastian
  * 
  */
-public class Board {
+public class Game {
 
   List<List<Tile>> board;
 
-  public Board(List<List<Tile>> board) {
+  public Game(List<List<Tile>> board) {
     this.board = board;
   }
 
-  public Board(String boardStringRepresentation) {
+  public Game(String boardStringRepresentation) {
     String[] tiles = boardStringRepresentation.split(",");
     if (tiles.length != 9) {
       throw new IllegalArgumentException("String has to contain exactly 9 values separated by comma.");
@@ -41,6 +41,17 @@ public class Board {
         column++;
       }
     }
+  }
+
+  public Game(Game initialState) {
+    board = new ArrayList<List<Tile>>(3);
+    for (List<Tile> row : initialState.getBoard()) {
+      board.add(new ArrayList<Tile>(row));
+    }
+  }
+
+  public List<List<Tile>> getBoard() {
+    return board;
   }
 
   public Position getPositionOfTile(Tile tile) {
@@ -65,8 +76,33 @@ public class Board {
   }
 
   public static void main(String[] args) {
-    Board board = new Board("3,1,2,5,4,0,8,6,7");
+    Game board = new Game("3,1,2,5,4,0,8,6,7");
     System.out.println(board.toString());
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((board == null) ? 0 : board.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Game other = (Game) obj;
+    if (board == null) {
+      if (other.board != null)
+        return false;
+    } else if (!board.equals(other.board))
+      return false;
+    return true;
   }
 
 }
