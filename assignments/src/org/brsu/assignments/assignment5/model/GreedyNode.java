@@ -4,10 +4,12 @@ public class GreedyNode implements Comparable<GreedyNode> {
 
   private int estimate;
   private Game state;
+  private int pathLength;
 
-  public GreedyNode(Game state, int estimate) {
+  public GreedyNode(Game state, int estimate, int pathLength) {
     this.state = state;
     this.estimate = estimate;
+    this.pathLength = pathLength;
   }
 
   @Override
@@ -46,6 +48,10 @@ public class GreedyNode implements Comparable<GreedyNode> {
 
   public Game getState() {
     return state;
+  }
+
+  public int getPathLength() {
+    return pathLength;
   }
 
 }

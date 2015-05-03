@@ -17,6 +17,8 @@ public class Greedy {
   private Heuristic heuristic;
   private GameLogic gameLogic;
   private int numberOfSteps;
+  private int pathLength;
+  private int maxNodesStored;
 
   public Greedy(Heuristic heuristic) {
     this.heuristic = heuristic;
@@ -27,11 +29,12 @@ public class Greedy {
 
     List<GreedyNode> fringe = new LinkedList<GreedyNode>();
     List<GreedyNode> visited = new LinkedList<GreedyNode>();
-    GreedyNode currentNode = createNode(game);
+    GreedyNode currentNode = createNewNode(game);
     numberOfSteps = 0;
+    maxNodesStored = 0;
     while (true) {
-      numberOfSteps++;
       if (gameLogic.performGoalTest(currentNode.getState())) {
+        pathLength = currentNode.getPathLength();
         return true;
       }
       visited.add(currentNode);
@@ -39,32 +42,37 @@ public class Greedy {
       for (int i = 0; i < possibleActions.size(); i++) {
         Game possibleState = gameLogic.computeTransition(currentNode.getState(), possibleActions.get(i));
         int estimate = heuristic.evaluate(possibleState);
-        GreedyNode node = new GreedyNode(possibleState, estimate);
+        GreedyNode node = new GreedyNode(possibleState, estimate, currentNode.getPathLength() + 1);
         if (!visited.contains(node) && !fringe.contains(node)) {
           fringe.add(node);
         }
       }
       Collections.sort(fringe);
-      // System.out.print("fringe estimates: ");
-      // for (GreedyNode node : fringe) {
-      // System.out.print(String.format("%d, ", node.getEstimate()));
-      // }
-      // System.out.print("\n");
+      maxNodesStored = Math.max(maxNodesStored, fringe.size());
       if (fringe.isEmpty()) {
         return false;
       }
       currentNode = fringe.get(0);
       fringe.remove(0);
+      numberOfSteps++;
     }
   }
 
-  private GreedyNode createNode(Game state) {
+  private GreedyNode createNewNode(Game state) {
     int estimate = heuristic.evaluate(state);
-    return new GreedyNode(state, estimate);
+    return new GreedyNode(state, estimate, 0);
   }
 
   public int getNumberOfSteps() {
     return numberOfSteps;
+  }
+
+  public int getPathLength() {
+    return pathLength;
+  }
+
+  public int getMaxNodesStored() {
+    return maxNodesStored;
   }
 
   public static void main(String[] args) {

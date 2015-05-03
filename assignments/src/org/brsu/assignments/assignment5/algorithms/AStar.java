@@ -1,8 +1,10 @@
 package org.brsu.assignments.assignment5.algorithms;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.brsu.assignments.assignment5.controller.Action;
 import org.brsu.assignments.assignment5.controller.GameLogic;
@@ -17,6 +19,8 @@ public class AStar {
   private Heuristic heuristic;
   private GameLogic gameLogic;
   private int numberOfSteps;
+  private int pathLength;
+  private int maxNodesStored;
 
   public AStar(Heuristic heuristic) {
     this.heuristic = heuristic;
@@ -25,12 +29,13 @@ public class AStar {
 
   public boolean execute(Game game) {
     List<AStarNode> fringe = new LinkedList<AStarNode>();
-    List<AStarNode> visited = new LinkedList<AStarNode>();
+    Set<AStarNode> visited = new HashSet<AStarNode>();
     AStarNode currentNode = new AStarNode(game, 0, heuristic.evaluate(game));
     numberOfSteps = 0;
+    maxNodesStored = 0;
     while (true) {
-      numberOfSteps++;
       if (gameLogic.performGoalTest(currentNode.getState())) {
+        pathLength = currentNode.getPathCost();
         return true;
       }
       visited.add(currentNode);
@@ -44,22 +49,26 @@ public class AStar {
         }
       }
       Collections.sort(fringe);
-      // System.out.print("fringe estimates: ");
-      // for (AStarNode node : fringe) {
-      // System.out.print(String.format("%d, ", node.getEstimate() +
-      // node.getPathCost()));
-      // }
-      // System.out.print("\n");
+      maxNodesStored = Math.max(maxNodesStored, fringe.size());
       if (fringe.isEmpty()) {
         return false;
       }
       currentNode = fringe.get(0);
       fringe.remove(0);
+      numberOfSteps++;
     }
   }
 
   public int getNumberOfSteps() {
     return numberOfSteps;
+  }
+
+  public int getPathLength() {
+    return pathLength;
+  }
+
+  public int getMaxNodesStored() {
+    return maxNodesStored;
   }
 
   public static void main(String[] args) {

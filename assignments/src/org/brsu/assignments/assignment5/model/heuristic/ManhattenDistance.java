@@ -14,6 +14,10 @@ public class ManhattenDistance extends Heuristic {
     int result = 0;
     for (List<Tile> row : board) {
       for (Tile tile : row) {
+        if (tile.equals(Tile.TILE_EMPTY)) {
+          // Do not compute distance for empty tile
+          continue;
+        }
         result += computeDistanceToTargetPosition(game, tile);
       }
     }

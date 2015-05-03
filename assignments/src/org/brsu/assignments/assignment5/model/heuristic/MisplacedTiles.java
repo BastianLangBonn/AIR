@@ -14,6 +14,10 @@ public class MisplacedTiles extends Heuristic {
     List<List<Tile>> board = game.getBoard();
     for (List<Tile> row : board) {
       for (Tile tile : row) {
+        if (tile.equals(Tile.TILE_EMPTY)) {
+          // Do not count empty tile
+          continue;
+        }
         Position targetPosition = tile.getTargetPosition();
         Position positionOfTile = game.getPositionOfTile(tile);
         if (!targetPosition.equals(positionOfTile)) {
