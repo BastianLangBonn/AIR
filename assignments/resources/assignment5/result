@@ -1,70 +1,110 @@
 ---------Problem 0-----------
-Greedy with manhatten distance took 67 steps. Time complexity: 34. Space complexity: 48. Success: true.
-Greedy with misplaced distance took 671 steps. Time complexity: 50. Space complexity: 425. Success: true.
-Greedy with linear conflict distance took 131 steps. Time complexity: 44. Space complexity: 98. Success: true.
-A* with manhatten distance took 2514 steps. Time complexity: 26. Space complexity: 1387. Success: true.
-A* with misplaced distance took 37320 steps. Time complexity: 26. Space complexity: 15631. Success: true.
-A* with linear conflict distance took 2135 steps. Time complexity: 26. Space complexity: 1342. Success: true.
+VIII, I, V, 
+II, III, IV, 
+, VI, VII, 
+
+Greedy with manhatten distance took 488 steps. Time complexity: 68. Space complexity: 337. Success: true.
+Greedy with misplaced distance took 246 steps. Time complexity: 56. Space complexity: 170. Success: true.
+Greedy with linear conflict distance took 342 steps. Time complexity: 74. Space complexity: 231. Success: true.
+A* with manhatten distance took 1226 steps. Time complexity: 24. Space complexity: 702. Success: true.
+A* with misplaced distance took 17661 steps. Time complexity: 24. Space complexity: 8924. Success: true.
+A* with linear conflict distance took 1085 steps. Time complexity: 24. Space complexity: 665. Success: true.
 ---------Problem 1-----------
-Greedy with manhatten distance took 471 steps. Time complexity: 34. Space complexity: 330. Success: true.
-Greedy with misplaced distance took 499 steps. Time complexity: 42. Space complexity: 332. Success: true.
-Greedy with linear conflict distance took 85 steps. Time complexity: 34. Space complexity: 66. Success: true.
-A* with manhatten distance took 489 steps. Time complexity: 20. Space complexity: 289. Success: true.
-A* with misplaced distance took 3979 steps. Time complexity: 20. Space complexity: 2310. Success: true.
-A* with linear conflict distance took 263 steps. Time complexity: 20. Space complexity: 170. Success: true.
+VIII, IV, III, 
+V, , I, 
+VII, II, VI, 
+
+Greedy with manhatten distance took 543 steps. Time complexity: 58. Space complexity: 373. Success: true.
+Greedy with misplaced distance took 718 steps. Time complexity: 44. Space complexity: 446. Success: true.
+Greedy with linear conflict distance took 339 steps. Time complexity: 72. Space complexity: 236. Success: true.
+A* with manhatten distance took 683 steps. Time complexity: 20. Space complexity: 396. Success: true.
+A* with misplaced distance took 4360 steps. Time complexity: 20. Space complexity: 2511. Success: true.
+A* with linear conflict distance took 479 steps. Time complexity: 20. Space complexity: 292. Success: true.
 ---------Problem 2-----------
-Greedy with manhatten distance took 436 steps. Time complexity: 78. Space complexity: 311. Success: true.
-Greedy with misplaced distance took 1716 steps. Time complexity: 74. Space complexity: 1067. Success: true.
-Greedy with linear conflict distance took 229 steps. Time complexity: 58. Space complexity: 159. Success: true.
-A* with manhatten distance took 3634 steps. Time complexity: 26. Space complexity: 1981. Success: true.
-A* with misplaced distance took 38261 steps. Time complexity: 26. Space complexity: 15859. Success: true.
-A* with linear conflict distance took 4920 steps. Time complexity: 26. Space complexity: 2849. Success: true.
+, II, IV, 
+I, VI, VII, 
+III, VIII, V, 
+
+Greedy with manhatten distance took 698 steps. Time complexity: 78. Space complexity: 476. Success: true.
+Greedy with misplaced distance took 224 steps. Time complexity: 30. Space complexity: 148. Success: true.
+Greedy with linear conflict distance took 132 steps. Time complexity: 48. Space complexity: 102. Success: true.
+A* with manhatten distance took 606 steps. Time complexity: 22. Space complexity: 361. Success: true.
+A* with misplaced distance took 7538 steps. Time complexity: 22. Space complexity: 4137. Success: true.
+A* with linear conflict distance took 613 steps. Time complexity: 22. Space complexity: 408. Success: true.
 ---------Problem 3-----------
-Greedy with manhatten distance took 146 steps. Time complexity: 26. Space complexity: 97. Success: true.
-Greedy with misplaced distance took 972 steps. Time complexity: 80. Space complexity: 591. Success: true.
-Greedy with linear conflict distance took 200 steps. Time complexity: 78. Space complexity: 136. Success: true.
-A* with manhatten distance took 401 steps. Time complexity: 20. Space complexity: 248. Success: true.
-A* with misplaced distance took 3273 steps. Time complexity: 20. Space complexity: 1987. Success: true.
-A* with linear conflict distance took 579 steps. Time complexity: 20. Space complexity: 387. Success: true.
+III, VIII, I, 
+V, IV, II, 
+VII, VI, , 
+
+Greedy with manhatten distance took 351 steps. Time complexity: 50. Space complexity: 234. Success: true.
+Greedy with misplaced distance took 994 steps. Time complexity: 54. Space complexity: 615. Success: true.
+Greedy with linear conflict distance took 71 steps. Time complexity: 34. Space complexity: 55. Success: true.
+A* with manhatten distance took 365 steps. Time complexity: 20. Space complexity: 226. Success: true.
+A* with misplaced distance took 3100 steps. Time complexity: 20. Space complexity: 1880. Success: true.
+A* with linear conflict distance took 259 steps. Time complexity: 20. Space complexity: 176. Success: true.
 ---------Problem 4-----------
-Greedy with manhatten distance took 233 steps. Time complexity: 50. Space complexity: 176. Success: true.
-Greedy with misplaced distance took 1386 steps. Time complexity: 86. Space complexity: 863. Success: true.
-Greedy with linear conflict distance took 70 steps. Time complexity: 36. Space complexity: 54. Success: true.
-A* with manhatten distance took 2315 steps. Time complexity: 26. Space complexity: 1265. Success: true.
-A* with misplaced distance took 37418 steps. Time complexity: 26. Space complexity: 15879. Success: true.
-A* with linear conflict distance took 1849 steps. Time complexity: 26. Space complexity: 1157. Success: true.
+II, V, , 
+VIII, IV, III, 
+I, VI, VII, 
+
+Greedy with manhatten distance took 121 steps. Time complexity: 42. Space complexity: 80. Success: true.
+Greedy with misplaced distance took 777 steps. Time complexity: 44. Space complexity: 477. Success: true.
+Greedy with linear conflict distance took 105 steps. Time complexity: 46. Space complexity: 75. Success: true.
+A* with manhatten distance took 182 steps. Time complexity: 18. Space complexity: 114. Success: true.
+A* with misplaced distance took 1283 steps. Time complexity: 18. Space complexity: 799. Success: true.
+A* with linear conflict distance took 276 steps. Time complexity: 18. Space complexity: 196. Success: true.
 ---------Problem 5-----------
-Greedy with manhatten distance took 393 steps. Time complexity: 58. Space complexity: 277. Success: true.
-Greedy with misplaced distance took 856 steps. Time complexity: 66. Space complexity: 527. Success: true.
-Greedy with linear conflict distance took 235 steps. Time complexity: 54. Space complexity: 162. Success: true.
-A* with manhatten distance took 1201 steps. Time complexity: 24. Space complexity: 694. Success: true.
-A* with misplaced distance took 21022 steps. Time complexity: 24. Space complexity: 10009. Success: true.
-A* with linear conflict distance took 1268 steps. Time complexity: 24. Space complexity: 785. Success: true.
+VIII, III, VII, 
+VI, V, II, 
+, I, IV, 
+
+Greedy with manhatten distance took 136 steps. Time complexity: 46. Space complexity: 90. Success: true.
+Greedy with misplaced distance took 1717 steps. Time complexity: 54. Space complexity: 1055. Success: true.
+Greedy with linear conflict distance took 187 steps. Time complexity: 52. Space complexity: 137. Success: true.
+A* with manhatten distance took 5328 steps. Time complexity: 28. Space complexity: 2768. Success: true.
+A* with misplaced distance took 71118 steps. Time complexity: 28. Space complexity: 22159. Success: true.
+A* with linear conflict distance took 3960 steps. Time complexity: 28. Space complexity: 2202. Success: true.
 ---------Problem 6-----------
-Greedy with manhatten distance took 96 steps. Time complexity: 38. Space complexity: 69. Success: true.
-Greedy with misplaced distance took 648 steps. Time complexity: 50. Space complexity: 394. Success: true.
-Greedy with linear conflict distance took 265 steps. Time complexity: 68. Space complexity: 192. Success: true.
-A* with manhatten distance took 2029 steps. Time complexity: 24. Space complexity: 1136. Success: true.
-A* with misplaced distance took 7582 steps. Time complexity: 22. Space complexity: 4200. Success: true.
-A* with linear conflict distance took 3145 steps. Time complexity: 24. Space complexity: 1846. Success: true.
+III, VIII, I, 
+V, IV, II, 
+VII, VI, , 
+
+Greedy with manhatten distance took 351 steps. Time complexity: 50. Space complexity: 234. Success: true.
+Greedy with misplaced distance took 994 steps. Time complexity: 54. Space complexity: 615. Success: true.
+Greedy with linear conflict distance took 71 steps. Time complexity: 34. Space complexity: 55. Success: true.
+A* with manhatten distance took 365 steps. Time complexity: 20. Space complexity: 226. Success: true.
+A* with misplaced distance took 3100 steps. Time complexity: 20. Space complexity: 1880. Success: true.
+A* with linear conflict distance took 259 steps. Time complexity: 20. Space complexity: 176. Success: true.
 ---------Problem 7-----------
-Greedy with manhatten distance took 22 steps. Time complexity: 16. Space complexity: 19. Success: true.
-Greedy with misplaced distance took 144 steps. Time complexity: 26. Space complexity: 96. Success: true.
-Greedy with linear conflict distance took 61 steps. Time complexity: 16. Space complexity: 46. Success: true.
-A* with manhatten distance took 113 steps. Time complexity: 16. Space complexity: 74. Success: true.
-A* with misplaced distance took 694 steps. Time complexity: 16. Space complexity: 426. Success: true.
-A* with linear conflict distance took 94 steps. Time complexity: 16. Space complexity: 68. Success: true.
+VIII, II, VII, 
+V, IV, III, 
+, VI, I, 
+
+Greedy with manhatten distance took 591 steps. Time complexity: 70. Space complexity: 399. Success: true.
+Greedy with misplaced distance took 329 steps. Time complexity: 42. Space complexity: 220. Success: true.
+Greedy with linear conflict distance took 303 steps. Time complexity: 60. Space complexity: 205. Success: true.
+A* with manhatten distance took 2392 steps. Time complexity: 26. Space complexity: 1305. Success: true.
+A* with misplaced distance took 36960 steps. Time complexity: 26. Space complexity: 15364. Success: true.
+A* with linear conflict distance took 2366 steps. Time complexity: 26. Space complexity: 1394. Success: true.
 ---------Problem 8-----------
-Greedy with manhatten distance took 132 steps. Time complexity: 54. Space complexity: 101. Success: true.
-Greedy with misplaced distance took 747 steps. Time complexity: 46. Space complexity: 476. Success: true.
-Greedy with linear conflict distance took 273 steps. Time complexity: 58. Space complexity: 183. Success: true.
-A* with manhatten distance took 449 steps. Time complexity: 22. Space complexity: 248. Success: true.
-A* with misplaced distance took 7339 steps. Time complexity: 22. Space complexity: 4103. Success: true.
-A* with linear conflict distance took 483 steps. Time complexity: 22. Space complexity: 315. Success: true.
+III, VIII, VII, 
+IV, V, I, 
+VI, II, , 
+
+Greedy with manhatten distance took 324 steps. Time complexity: 40. Space complexity: 214. Success: true.
+Greedy with misplaced distance took 883 steps. Time complexity: 60. Space complexity: 546. Success: true.
+Greedy with linear conflict distance took 96 steps. Time complexity: 38. Space complexity: 73. Success: true.
+A* with manhatten distance took 1878 steps. Time complexity: 26. Space complexity: 1021. Success: true.
+A* with misplaced distance took 36029 steps. Time complexity: 26. Space complexity: 14977. Success: true.
+A* with linear conflict distance took 1801 steps. Time complexity: 26. Space complexity: 1131. Success: true.
 ---------Problem 9-----------
-Greedy with manhatten distance took 263 steps. Time complexity: 52. Space complexity: 190. Success: true.
-Greedy with misplaced distance took 1164 steps. Time complexity: 62. Space complexity: 706. Success: true.
-Greedy with linear conflict distance took 323 steps. Time complexity: 68. Space complexity: 219. Success: true.
-A* with manhatten distance took 3520 steps. Time complexity: 26. Space complexity: 1877. Success: true.
-A* with misplaced distance took 43553 steps. Time complexity: 26. Space complexity: 16715. Success: true.
-A* with linear conflict distance took 3896 steps. Time complexity: 26. Space complexity: 2285. Success: true.
+IV, VIII, VII, 
+VI, I, V, 
+II, III, , 
+
+Greedy with manhatten distance took 362 steps. Time complexity: 52. Space complexity: 236. Success: true.
+Greedy with misplaced distance took 740 steps. Time complexity: 60. Space complexity: 481. Success: true.
+Greedy with linear conflict distance took 164 steps. Time complexity: 60. Space complexity: 119. Success: true.
+A* with manhatten distance took 5408 steps. Time complexity: 28. Space complexity: 2847. Success: true.
+A* with misplaced distance took 70987 steps. Time complexity: 28. Space complexity: 22339. Success: true.
+A* with linear conflict distance took 4412 steps. Time complexity: 28. Space complexity: 2497. Success: true.

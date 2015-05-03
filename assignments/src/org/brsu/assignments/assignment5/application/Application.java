@@ -57,6 +57,7 @@ public class Application {
       boolean conflictStarSuccess = conflictAStar.execute(game);
 
       writer.print(String.format("---------Problem %d-----------\n", i));
+      writer.print(game.toString() + "\n");
       writer.print(String.format(LINE_TO_PRINT, "Greedy with manhatten", manhattenGreedy.getNumberOfSteps(),
           manhattenGreedy.getPathLength(), manhattenGreedy.getMaxNodesStored(), greedyManhattenSuccess));
       writer.print(String.format(LINE_TO_PRINT, "Greedy with misplaced", missplacedGreedy.getNumberOfSteps(),
