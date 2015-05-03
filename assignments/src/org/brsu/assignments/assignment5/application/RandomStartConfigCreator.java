@@ -1,25 +1,25 @@
 package org.brsu.assignments.assignment5.application;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+
+import org.brsu.assignments.assignment5.controller.Action;
+import org.brsu.assignments.assignment5.controller.GameLogic;
+import org.brsu.assignments.assignment5.model.Game;
 
 public class RandomStartConfigCreator {
 
-  public String createRandomConfiguration() {
-    List<Integer> list = new ArrayList<Integer>();
-    for (int i = 0; i < 9; i++) {
-      list.add(i);
+  public Game createRandomConfiguration() {
+    Game startConfig = new Game("1,2,3,4,5,6,7,8,0");
+    GameLogic gameLogic = new GameLogic();
+    Game currentState = startConfig;
+    Random random = new Random();
+    for (int i = 0; i < 1000; i++) {
+      List<Action> possibleActions = gameLogic.computePossibleActions(currentState);
+      currentState = gameLogic.computeTransition(currentState,
+          possibleActions.get(random.nextInt(possibleActions.size())));
     }
-    Collections.shuffle(list);
-    String result = "";
-    for (int i = 0; i < list.size(); i++) {
-      result += list.get(i);
-      if (i < list.size() - 1) {
-        result += ",";
-      }
-    }
-    return result;
+    return currentState;
   }
 
   public static void main(String[] args) {

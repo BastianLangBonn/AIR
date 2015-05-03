@@ -41,13 +41,19 @@ public class Application {
     PrintWriter writer;
     writer = new PrintWriter(new BufferedWriter(new FileWriter("resources/assignment5/result", true)));
     for (int i = 0; i < 10; i++) {
-      String startConfiguration = randomStartConfigCreator.createRandomConfiguration();
-      Game game = new Game(startConfiguration);
+      Game game = randomStartConfigCreator.createRandomConfiguration();
+      System.out.println(String.format("created startConfig: %s", game));
+      System.out.println("Computing greedyManhatten");
       boolean greedyManhattenSuccess = manhattenGreedy.execute(game);
+      System.out.println("computing misplacedGreedy");
       boolean misplacedGreedySuccess = missplacedGreedy.execute(game);
+      System.out.println("computing linear conflict greedy");
       boolean conflictGreedySuccess = conflictGreedy.execute(game);
+      System.out.println("computing manhatten A*");
       boolean manhattenStarSuccess = manhattenStar.execute(game);
+      System.out.println("computing misplaced A*");
       boolean misplacedStarSuccess = missplacedAStar.execute(game);
+      System.out.println("computing linear conflict A*");
       boolean conflictStarSuccess = conflictAStar.execute(game);
 
       writer.print(String.format("---------Problem %d-----------\n", i));
