@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{graphicx}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{BRSU} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework for Artificial Intelligence for Robotics - Assignment 5 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Bastian Lang} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Theoretical Part}
+\subsection{Exercise 1}
+\emph{Explain the working of uniform cost search.}\\\\
+
+Uniform cost search only keeps track of the path cost so far. It uses a list of states sorted by their path costs as a fringe. It does not use any heuristic to estimate the desirability of a single state. In every step of the algorithm uniform cost search expands the state with the least path cost to reach of the fringe.
+
+
+
+\section{Practical Part}
+\subsection{Task Overview}
+In this assignment the task was to implement greedy search and A* search both with three heuristics for the 8-puzzle. The heuristics were the misplaced tiles heuristic, manhatten distance heuristic and linear conflicts heuristic. Start positions should be generated randomly and their performance compared to each other. In the end we should comment on if the heuristics are consistent or inconsistent.
+
+
+\subsection{Approach}
+\subsubsection{State Representation}
+A single state or board configuration is represented in my solution by a two dimensional list of tiles, 3x3. The tiles are of class Tile which has exactly 9 instances, whereas the empty tile is part of them.\\
+The target state has the empty tile at the last position (row 3, column 3 when start counting from 1).
+
+\subsubsection{Search Algorithms}
+Each algorithm is a class of its own and takes a heuristic as a constructor parameter.\\
+Both start with a given start position, compute the possible actions, the resulting states when applying these possible actions and compute the estimates for those states by applying the heuristic.\\
+Each state is then stored with a value in a list which is sorted by the estimate.\\
+The current state is then added to a visited list and then becomes the first element of the fringe which gets deleted from the fringe after the assignment.\\
+This loop continues until either the target state is reached or the fringe is empty after adding new nodes to it.\\\\
+The difference between \emph{Greedy} and \emph{A*} is the value which each state gets assigned. For \emph{Greedy} this is only the heuristics measurement, for \emph{A*} it is the heuristic's estimation plus the steps taken so far.
+
+\subsubsection{Start Configurations}
+When creating start positions purely by random there were some states for which the algorithms took a lot of time. So instead I created those start configurations by taking the target solution and applying 1000 random valid actions on it.
+
+\subsubsection{Linear Conflicts Heuristics}
+It took me some time to implement this heuristic. In the end I computed the number of conflicts for each tile in a single row and for each tile in a single column.\\
+Looking at rows/columns separately there are only three possible outcomes: 0, 2 or 4. 0 only results if all tiles have 0 conflicts. 4 only results if the sum of conflicts in this row/column is 4 and one tile has conflict 0. So after computing the conflicts row/columnwise, I just gave the conflict of this row/column based on these conditions.\\
+The resulting LC-value of a given state is then the sum of all row and column conflicts plus the manhatten distance for this state.
+
+\subsection{Results}
+
+\subsubsection{Comparison of heuristics and algorithms}
+For Greedy manhatten and linear conflict perform quite equally. Misplaced tiles is worse in time and space complexity in all but one case.\\\\
+
+For the A* my implementations the manhatten distance and the linear conflict heuristic perform equally. Both perform better then the other in terms of space and time complexity in 5 of 10 maps. Misplaced Tiles is the worst of them and takes up to roughly ten times more time and space.\\\\
+
+Comparing A* and Greedy, A*'s time and space complexity is always worse, but it finds always the shortest path to reach the solution. Greedy still finds a solution, but not the optimal one.
+
+\subsubsection{Consistency}
+-
+
+\subsubsection{Test Results}
+---------Problem 0-----------\\
+VIII, I, IV, \\
+V, VI, III, \\
+II, VII, , \\
+
+Greedy with manhatten distance solution needs 50 steps. Time complexity: 143. Space complexity: 97. Success: true.\\
+Greedy with misplaced distance solution needs 44 steps. Time complexity: 381. Space complexity: 240. Success: true.\\
+Greedy with linear conflict distance solution needs 52 steps. Time complexity: 222. Space complexity: 165. Success: true.\\
+A* with manhatten distance solution needs 26 steps. Time complexity: 3923. Space complexity: 2059. Success: true.\\
+A* with misplaced distance solution needs 26 steps. Time complexity: 38265. Space complexity: 15852. Success: true.\\
+A* with linear conflict distance solution needs 26 steps. Time complexity: 2776. Space complexity: 1588. Success: true.\\
+---------Problem 1-----------\\
+VI, III, , \\
+V, IV, I, \\
+VII, VIII, II,\\ 
+
+Greedy with manhatten distance solution needs 48 steps. Time complexity: 512. Space complexity: 348. Success: true.\\ 
+Greedy with misplaced distance solution needs 44 steps. Time complexity: 809. Space complexity: 504. Success: true.\\ 
+Greedy with linear conflict distance solution needs 56 steps. Time complexity: 247. Space complexity: 180. Success: true.\\ 
+A* with manhatten distance solution needs 22 steps. Time complexity: 1047. Space complexity: 596. Success: true.\\ 
+A* with misplaced distance solution needs 22 steps. Time complexity: 8062. Space complexity: 4433. Success: true.\\ 
+A* with linear conflict distance solution needs 22 steps. Time complexity: 1057. Space complexity: 641. Success: true.\\ 
+---------Problem 2-----------\\ 
+V, VII, II, \\ 
+I, , VI, \\ 
+IV, VIII, III, \\ 
+
+Greedy with manhatten distance solution needs 38 steps. Time complexity: 508. Space complexity: 345. Success: true.\\ 
+Greedy with misplaced distance solution needs 36 steps. Time complexity: 541. Space complexity: 341. Success: true.\\ 
+Greedy with linear conflict distance solution needs 32 steps. Time complexity: 195. Space complexity: 134. Success: true.\\ 
+A* with manhatten distance solution needs 20 steps. Time complexity: 841. Space complexity: 492. Success: true.\\ 
+A* with misplaced distance solution needs 20 steps. Time complexity: 4361. Space complexity: 2494. Success: true.\\ 
+A* with linear conflict distance solution needs 20 steps. Time complexity: 671. Space complexity: 421. Success: true.\\ 
+---------Problem 3-----------\\ 
+VI, VIII, I, \\ 
+III, VII, IV, \\ 
+, II, V, \\ 
+
+Greedy with manhatten distance solution needs 46 steps. Time complexity: 105. Space complexity: 69. Success: true.\\ 
+Greedy with misplaced distance solution needs 78 steps. Time complexity: 846. Space complexity: 540. Success: true.\\ 
+Greedy with linear conflict distance solution needs 46 steps. Time complexity: 134. Space complexity: 97. Success: true.\\ 
+A* with manhatten distance solution needs 26 steps. Time complexity: 1942. Space complexity: 1063. Success: true.\\ 
+A* with misplaced distance solution needs 26 steps. Time complexity: 36753. Space complexity: 15465. Success: true.\\ 
+A* with linear conflict distance solution needs 26 steps. Time complexity: 1757. Space complexity: 1105. Success: true.\\ 
+---------Problem 4-----------\\ 
+VI, I, , \\ 
+VIII, IV, V,\\  
+II, III, VII, \\ 
+
+Greedy with manhatten distance solution needs 26 steps. Time complexity: 41. Space complexity: 33. Success: true.\\ 
+Greedy with misplaced distance solution needs 56 steps. Time complexity: 955. Space complexity: 617. Success: true.\\ 
+Greedy with linear conflict distance solution needs 82 steps. Time complexity: 301. Space complexity: 220. Success: true.\\ 
+A* with manhatten distance solution needs 24 steps. Time complexity: 978. Space complexity: 559. Success: true.\\ 
+A* with misplaced distance solution needs 24 steps. Time complexity: 17405. Space complexity: 8893. Success: true.\\ 
+A* with linear conflict distance solution needs 24 steps. Time complexity: 1005. Space complexity: 650. Success: true.\\ 
+---------Problem 5-----------\\ 
+V, VI, , \\ 
+IV, III, I, \\ 
+II, VIII, VII, \\ 
+
+Greedy with manhatten distance solution needs 44 steps. Time complexity: 216. Space complexity: 163. Success: true.\\ 
+Greedy with misplaced distance solution needs 44 steps. Time complexity: 336. Space complexity: 216. Success: true.\\ 
+Greedy with linear conflict distance solution needs 44 steps. Time complexity: 105. Space complexity: 85. Success: true.\\ 
+A* with manhatten distance solution needs 24 steps. Time complexity: 2273. Space complexity: 1262. Success: true.\\ 
+A* with misplaced distance solution needs 24 steps. Time complexity: 18183. Space complexity: 8957. Success: true.\\ 
+A* with linear conflict distance solution needs 24 steps. Time complexity: 2720. Space complexity: 1661. Success: true.\\ 
+---------Problem 6-----------\\ 
+II, V, VI, \\ 
+I, , VIII, \\ 
+III, IV, VII, \\ 
+
+Greedy with manhatten distance solution needs 24 steps. Time complexity: 76. Space complexity: 54. Success: true.\\ 
+Greedy with misplaced distance solution needs 24 steps. Time complexity: 346. Space complexity: 229. Success: true.\\ 
+Greedy with linear conflict distance solution needs 24 steps. Time complexity: 93. Space complexity: 72. Success: true.\\ 
+A* with manhatten distance solution needs 20 steps. Time complexity: 581. Space complexity: 350. Success: true.\\ 
+A* with misplaced distance solution needs 20 steps. Time complexity: 4079. Space complexity: 2336. Success: true.\\ 
+A* with linear conflict distance solution needs 20 steps. Time complexity: 394. Space complexity: 271. Success: true.\\ 
+---------Problem 7-----------\\ 
+IV, II, III, \\ 
+VII, , V, \\ 
+VI, I, VIII, \\ 
+
+Greedy with manhatten distance solution needs 46 steps. Time complexity: 591. Space complexity: 383. Success: true.\\ 
+Greedy with misplaced distance solution needs 40 steps. Time complexity: 495. Space complexity: 328. Success: true.\\ 
+Greedy with linear conflict distance solution needs 46 steps. Time complexity: 224. Space complexity: 159. Success: true.\\ 
+A* with manhatten distance solution needs 18 steps. Time complexity: 387. Space complexity: 226. Success: true.\\ 
+A* with misplaced distance solution needs 18 steps. Time complexity: 1805. Space complexity: 1089. Success: true.\\ 
+A* with linear conflict distance solution needs 18 steps. Time complexity: 285. Space complexity: 186. Success: true.\\ 
+---------Problem 8-----------\\ 
+, VII, VI, \\ 
+II, V, I, \\ 
+IV, III, VIII,\\  
+
+Greedy with manhatten distance solution needs 26 steps. Time complexity: 51. Space complexity: 37. Success: true.\\ 
+Greedy with misplaced distance solution needs 52 steps. Time complexity: 750. Space complexity: 473. Success: true.\\ 
+Greedy with linear conflict distance solution needs 38 steps. Time complexity: 112. Space complexity: 86. Success: true.\\ 
+A* with manhatten distance solution needs 22 steps. Time complexity: 911. Space complexity: 525. Success: true.\\ 
+A* with misplaced distance solution needs 22 steps. Time complexity: 7821. Space complexity: 4325. Success: true.\\ 
+A* with linear conflict distance solution needs 22 steps. Time complexity: 1501. Space complexity: 919. Success: true.\\ 
+---------Problem 9-----------\\ 
+VI, IV, VIII, \\ 
+VII, III, I, \\ 
+, V, II, \\ 
+
+Greedy with manhatten distance solution needs 36 steps. Time complexity: 94. Space complexity: 65. Success: true.\\ 
+Greedy with misplaced distance solution needs 52 steps. Time complexity: 595. Space complexity: 371. Success: true.\\ 
+Greedy with linear conflict distance solution needs 38 steps. Time complexity: 91. Space complexity: 71. Success: true.\\ 
+A* with manhatten distance solution needs 22 steps. Time complexity: 369. Space complexity: 222. Success: true.\\ 
+A* with misplaced distance solution needs 22 steps. Time complexity: 7324. Space complexity: 4184. Success: true.\\ 
+A* with linear conflict distance solution needs 22 steps. Time complexity: 674. Space complexity: 447. Success: true.\\ 
+
+
+
+\end{document}
