@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{BRSU} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework for Artificial Intelligence for Robotics - Assignment 6 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Bastian Lang} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Theoretical Part}
+
+\subsection{Create a mindmap for uninformed and informed search alogrithms that you have studied so
+far. The mindmap should have all the alogrithms listed under the corresponding category.
+It should also have all the basic properties of each search algorithm listed under it. In
+short, create it in such a way that it will act as a summary during your exam preparation.}
+
+---
+
+\subsection{Give theoretical explanation to prove the following statements.}
+
+\subsubsection{Breadth-first search is a special case of uniform-cost search.}
+In BSF the fringe gets filled with the nodes of one level first before adding the nodes of the next level. BSF is uninformed, so each step is assumed to have the same cost. Therefore each node belonging to the same level has the same path cost. Therefore BSF does always take one of those nodes with the least path costs from the fringe to expand next, which is the behaviour of uniform-cost search as well.
+
+\subsubsection{Breadth-first search, depth-first search, and uniform-cost search are special cases of
+best-first search.}
+If the evaluation function would be the path costs and the costs are uniformly distributed, best-first search would behave like \textbf{breadth-first search}.\\
+If the evaluation function would equal the depth of the node, then best-first search would behave like \textbf{depth-first search.}\\
+If the evaluation function would equal the path costs only (no need of uniformly distributed costs) then best-first search will behave like \textbf{uniform-cost search}.
+
+\subsection{Answer the following questions regarding A* search.}
+
+\subsubsection{When is A* search complete?}
+When there are no infinitely many nodes with f $\leq$ f(G), meaning there may not be any node evaluated to zero.
+
+\subsubsection{When does A* search end the search process?}
+When it has found a (optimal) solution or when it has expanded every node without finding a goal.
+
+\subsubsection{Briefly describe the behaviour of A* search with a consistent heuristic.}
+If A* uses a consistent heuristic and there are two paths to reach a certain node C which lies on the optimal solution - the suboptimal path taking one more step to node B in between and the optimal one going directly to C - then A* might first expand B, but it will eventually discard B for the direct path to C.\\
+Using a consistent heuristic ensures that A* always takes the optimal path towards a goal.
+
+\subsection{Prove that if a heuristic is consistent, it must be admissible. Consider an example state
+space and construct an admissible heuristic that is not consistent.}
+
+---
+
+
+
+
+\end{document}
