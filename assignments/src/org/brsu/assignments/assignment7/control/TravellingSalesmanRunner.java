@@ -46,7 +46,7 @@ public class TravellingSalesmanRunner {
 
   public SalesmanNode solveProblemUsingKMeans() {
     KMeans kMeans = new KMeans();
-    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 70);
+    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 100);
     System.out.println(String.format("Clusters: %s", clusters.toString()));
     // Compute path for clusters
     List<SalesmanNode> clusterSolutions = new LinkedList<SalesmanNode>();
@@ -110,6 +110,16 @@ public class TravellingSalesmanRunner {
   public static void main(String[] args) throws IOException {
     TravellingSalesmanRunner runner = new TravellingSalesmanRunner();
     SalesmanNode solution = runner.solveProblemUsingKMeans();
+    // Set<City> cities = new
+    // CityFileReader().readCitiesFromFile("resources/assignment7/cities.txt");
+    // SalesmanNode solution = runner.solveProblem(10, new
+    // LinkedList<City>(cities));
     System.out.println(String.format("Solution: %s", solution.toString()));
+
+    for (City city : solution.getPath()) {
+      System.out.println(city.getName());
+    }
+
+    System.out.println(solution.getLength());
   }
 }

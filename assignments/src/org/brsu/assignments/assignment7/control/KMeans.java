@@ -21,9 +21,11 @@ public class KMeans {
   private Set<CityCluster> computeInitialKClusters(int k) {
     Set<CityCluster> clusters = new HashSet<CityCluster>();
     random = new Random();
+    // double initializationIntervall = 400.0 / k;
     for (int i = 0; i < k; i++) {
-      double longitude = random.nextDouble() * 400 - 200;
-      double latitude = random.nextDouble() * 400 - 200;
+      double longitude = random.nextDouble() * 380 - 125;
+      double latitude = random.nextDouble() * 100 - 38;
+
       CityCluster cluster = new CityCluster(new HashSet<City>(), longitude, latitude);
       clusters.add(cluster);
     }
@@ -32,6 +34,9 @@ public class KMeans {
 
   private Set<CityCluster> computeResultingClusters(Set<City> cities, Set<CityCluster> clusters) {
     HashSet<CityCluster> result = new HashSet<CityCluster>(clusters);
+    for (CityCluster cluster : clusters) {
+      cluster.getCities().removeAll(cluster.getCities());
+    }
     for (City city : cities) {
       double distance = 40000;
       CityCluster nearestCluster = null;
@@ -48,7 +53,7 @@ public class KMeans {
     Set<CityCluster> toDelete = new HashSet<CityCluster>();
     for (CityCluster cluster : clusters) {
       cluster.updateMean();
-      if (cluster.getCities().size() < 10) {
+      if (cluster.getCities().size() < 3) {
         toDelete.add(cluster);
       }
     }
@@ -67,9 +72,13 @@ public class KMeans {
   public static void main(String[] args) throws IOException {
     KMeans kMeans = new KMeans();
     Set<City> cities = new CityFileReader().readCitiesFromFile("resources/assignment7/cities.txt");
-    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 70);
+    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 200);
     for (CityCluster cluster : clusters) {
-      System.out.println(cluster.toString());
+      for (City city : cluster.getCities()) {
+        System.out.println(city.getName());
+      }
+      // System.out.println(cluster.toString());
     }
+    System.out.println(clusters.size());
   }
 }
