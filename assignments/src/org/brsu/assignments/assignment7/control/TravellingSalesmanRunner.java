@@ -10,6 +10,7 @@ import java.util.Set;
 import org.brsu.assignments.assignment7.model.City;
 import org.brsu.assignments.assignment7.model.CityCluster;
 import org.brsu.assignments.assignment7.model.SalesmanNode;
+import org.brsu.assignments.assignment7.view.MainFrame;
 
 /**
  * Class implementing the solver for the travelling salesman problem.
@@ -46,7 +47,7 @@ public class TravellingSalesmanRunner {
 
   public SalesmanNode solveProblemUsingKMeans() {
     KMeans kMeans = new KMeans();
-    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 100);
+    Set<CityCluster> clusters = kMeans.computeKMeans(cities, 50);
     System.out.println(String.format("Clusters: %s", clusters.toString()));
     // Compute path for clusters
     List<SalesmanNode> clusterSolutions = new LinkedList<SalesmanNode>();
@@ -121,5 +122,7 @@ public class TravellingSalesmanRunner {
     }
 
     System.out.println(solution.getLength());
+
+    new MainFrame(solution);
   }
 }
