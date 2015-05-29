@@ -16,7 +16,7 @@ import org.brsu.assignments.assignment7.view.MainFrame;
  * Class implementing the solver for the travelling salesman problem.
  * 
  * @author bastian
- *
+ * 
  */
 public class TravellingSalesmanRunner {
 
@@ -52,8 +52,9 @@ public class TravellingSalesmanRunner {
     // Compute path for clusters
     List<SalesmanNode> clusterSolutions = new LinkedList<SalesmanNode>();
     for (CityCluster cluster : clusters) {
-      clusterSolutions.add(solveProblem(1, new ArrayList<City>(cluster.getCities())));
-      System.out.println(String.format("Solution for a cluster: %s", clusterSolutions.toString()));
+      SalesmanNode clusterSolution = solveProblem(1, new ArrayList<City>(cluster.getCities()));
+      clusterSolutions.add(clusterSolution);
+      System.out.println(String.format("Solution for a cluster: %s", clusterSolution.toString()));
     }
 
     // Convert cluster means into cities
@@ -87,10 +88,7 @@ public class TravellingSalesmanRunner {
     List<City> path = node.getPath();
     SalesmanNode currentShortestNode = node;
     for (int i = 0; i < path.size(); i++) {
-      // System.out.print(String.format("\nElement:%d, currentPathLength: %f ",
-      // i, currentShortestNode.getLength()));
       for (int j = i; j < path.size(); j++) {
-        // System.out.print(String.format(", %d;", j));
         ArrayList<City> possibleSuccessor = new ArrayList<City>(path);
         possibleSuccessor.set(i, path.get(j));
         possibleSuccessor.set(j, path.get(i));
@@ -103,18 +101,12 @@ public class TravellingSalesmanRunner {
     if (currentShortestNode.getLength() == node.getLength()) {
       return node;
     }
-    // System.out.println(String.format("Current path length: %f",
-    // currentShortestNode.getLength()));
     return getSolution(currentShortestNode);
   }
 
   public static void main(String[] args) throws IOException {
     TravellingSalesmanRunner runner = new TravellingSalesmanRunner();
     SalesmanNode solution = runner.solveProblemUsingKMeans();
-    // Set<City> cities = new
-    // CityFileReader().readCitiesFromFile("resources/assignment7/cities.txt");
-    // SalesmanNode solution = runner.solveProblem(10, new
-    // LinkedList<City>(cities));
     System.out.println(String.format("Solution: %s", solution.toString()));
 
     for (City city : solution.getPath()) {
