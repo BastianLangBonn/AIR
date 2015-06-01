@@ -52,8 +52,9 @@ public class TravellingSalesmanRunner {
     // Compute path for clusters
     List<SalesmanNode> clusterSolutions = new LinkedList<SalesmanNode>();
     for (CityCluster cluster : clusters) {
-      clusterSolutions.add(solveProblem(1, new ArrayList<City>(cluster.getCities())));
-      System.out.println(String.format("Solution for a cluster: %s", clusterSolutions.toString()));
+      SalesmanNode clusterSolution = solveProblem(1, new ArrayList<City>(cluster.getCities()));
+      clusterSolutions.add(clusterSolution);
+      System.out.println(String.format("Solution for a cluster: %s", clusterSolution.toString()));
     }
 
     // Convert cluster means into cities
