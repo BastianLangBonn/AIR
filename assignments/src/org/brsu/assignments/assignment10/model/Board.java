@@ -1,6 +1,5 @@
 package org.brsu.assignments.assignment10.model;
 
-
 /**
  * Class representing the board of the connect 4 game.
  * 
@@ -19,7 +18,17 @@ public class Board {
     }
   }
 
-  public Stone[][] getBoard() {
+  public Board(Board board) {
+    Stone[][] stones = board.getStones();
+    this.board = new Stone[stones.length][stones[0].length];
+    for (int i = 0; i < stones.length; i++) {
+      for (int j = 0; j < stones[0].length; j++) {
+        this.board[i][j] = stones[i][j];
+      }
+    }
+  }
+
+  public Stone[][] getStones() {
     return board;
   }
 
@@ -31,10 +40,14 @@ public class Board {
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append("Board state:\n");
-    for (Stone[] column : board) {
-      for (Stone stone : column) {
-        stringBuilder.append(stone);
-        stringBuilder.append(",");
+    for (int i = board[0].length - 1; i >= 0; i--) {
+      for (int j = 0; j < board.length; j++) {
+        if (board[j][i].equals(Stone.EMPTY)) {
+          stringBuilder.append(". ");
+        } else {
+          stringBuilder.append(board[j][i]);
+          stringBuilder.append(" ");
+        }
       }
       stringBuilder.append("\n");
     }
