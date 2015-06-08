@@ -41,6 +41,7 @@ public class Board {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append("Board state:\n");
     for (int i = board[0].length - 1; i >= 0; i--) {
+      stringBuilder.append(String.format("%d ", i));
       for (int j = 0; j < board.length; j++) {
         if (board[j][i].equals(Stone.EMPTY)) {
           stringBuilder.append(". ");
@@ -51,7 +52,7 @@ public class Board {
       }
       stringBuilder.append("\n");
     }
+    stringBuilder.append("  0 1 2 3 4 5 6");
     return stringBuilder.toString();
   }
-
 }

@@ -4,16 +4,17 @@ import org.brsu.assignments.assignment10.model.Board;
 import org.brsu.assignments.assignment10.model.State;
 import org.brsu.assignments.assignment10.model.Stone;
 
-public class MinMax extends Player {
+public class Alpha extends Player {
 
-  private static final int MAX_DEPTH_LEVEL = 4;
   private static final int WINNING_VALUE = 10000;
+  private static final int MAX_DEPTH_LEVEL = 4;
+  private Stone playersStone;
   private String name;
   private Stone opponentStone;
 
-  public MinMax(Stone stone, String name) {
-    this.playersStone = stone;
+  public Alpha(Stone playersStone, String name) {
     this.name = name;
+    this.playersStone = playersStone;
     opponentStone = null;
     if (playersStone.equals(Stone.X)) {
       opponentStone = Stone.O;
@@ -24,7 +25,7 @@ public class MinMax extends Player {
 
   @Override
   public int computeRowForNextMove(Board board) {
-    System.out.print("MinMax is thinking...");
+    System.out.print("Alpha is thinking...");
     int maxValue = -20000;
     int index = 0;
     for (int i = 0; i < 7; i++) {
@@ -95,4 +96,5 @@ public class MinMax extends Player {
   public String toString() {
     return name;
   }
+
 }

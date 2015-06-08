@@ -88,7 +88,7 @@ public class Game {
     } else if (selection == MIN_MAX) {
       player = new MinMax(playersStone, name);
     } else if (selection == MIN_MAX_ALPHA) {
-
+      player = new Alpha(playersStone, name);
     }
     return player;
   }

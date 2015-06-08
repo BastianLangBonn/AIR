@@ -80,7 +80,6 @@ public class BoardValidator {
         Stone stone = stones[j][i];
         if (stone.equals(Stone.EMPTY)) {
           count = 0;
-          break;
         }
         if (stone.equals(currentStone)) {
           count++;
@@ -100,7 +99,7 @@ public class BoardValidator {
 
     // check right diagonals
     for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 4; j++) {
+      for (int j = 0; j < 3; j++) {
         if (!stones[i][j].equals(Stone.EMPTY)) {
           boolean won = checkRightDiagonalStartingWith(i, j);
           if (won) {
@@ -115,7 +114,7 @@ public class BoardValidator {
     }
     // check left diagonals
     for (int i = 3; i < stones.length; i++) {
-      for (int j = 0; j < 4; j++) {
+      for (int j = 0; j < 3; j++) {
         if (!stones[i][j].equals(Stone.EMPTY)) {
           boolean won = checkLeftDiagonalStartingWith(i, j);
           if (won) {

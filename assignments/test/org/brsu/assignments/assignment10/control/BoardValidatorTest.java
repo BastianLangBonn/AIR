@@ -157,6 +157,26 @@ public class BoardValidatorTest {
   }
 
   @Test
+  public void computeState_bug2_XWon() {
+    // Arrange
+    board.setStone(2, 0, Stone.X);
+    board.setStone(3, 0, Stone.X);
+    board.setStone(4, 0, Stone.X);
+    board.setStone(5, 0, Stone.X);
+    board.setStone(0, 0, Stone.O);
+    board.setStone(3, 1, Stone.O);
+    board.setStone(4, 1, Stone.O);
+    board.setStone(5, 1, Stone.O);
+    System.out.println(board);
+
+    // Act
+    State state = subject.computeState();
+
+    // Assert
+    assertEquals("Wrong state.", State.X_WON, state);
+  }
+
+  @Test
   public void computeState_emptyBoard_false() {
     // Act
     State state = subject.computeState();
