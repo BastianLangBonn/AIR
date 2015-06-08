@@ -1,0 +1,8 @@
+To compile the code, please change into directory 'src' and
+use the command 'javac org/brsu/assignments/assignment10/control/Game.java'.
+
+To run the code, please change into directory 'src' and use the command:
+'java org.brsu.assignments.assignment10.control.Game'
+
+Please note that you can choose the pruning agent, but that it will not have any 
+complex behavior.

@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{BRSU} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework for Artificial Intelligence for Robotics\\Assignment 10 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Bastian Lang} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+
+\section{Practical Part}
+
+\subsection{Task}
+Implement a simple \textit{Connect 4} game to demonstrate the use of adversarial search for
+deterministic, fully observable, two player turn-taking zero-sum games.\\
+For the adversarial search problem, implement a minmax and alpha-beta pruning agent
+that allows you to play against the computer and/or the two algorithms against each other.
+Compare these two approaches based on their search time, space requirement and other
+information that you think is important. What was your evaluation function to rate the
+board?
+
+\subsection{Approach}
+\subsubsection{Game}
+In the beginning the user is asked to decide the two players. He has the opportunity to choose between a human player, the \textbf{MinMax} agent or the \textbf{Alpha-Beta-Pruning} agent.\\
+My implementation uses a \textit{GameValidator} - class to check the current state of a board. This validator checks if the board is full and if in a single line, row or diagonal there are four connected stones of a kind.\\
+The main part of the game runs in a while loop until the state has changed to either \textit{draw} or one of the two players won. In every cycle one of the two players is asked for his next move. The board gets checked afterwards and the current player changes.\\
+
+\subsubsection{MinMax}
+Because the search space is way too big to check it completely, I limited the depth of the search to 4 levels.\\
+In the beginning I used an \textbf{evaluation function} that only checks terminal states, but with the depth limit and returning 0 if the limit is reached this will result in poor behaviour.\\
+I thought about several strategies. One is to check the number of connected stones each row, diagonal and column and assign them a value depending on empty fields on both sides of the chain, on only one side or no empty fields left. But due to time issues and problems while implementing I instead went for a simpler solution.\\
+In every row, diagonal and column I now check each possible set of neighbouring four stones. I evaluate each of those sets with respect to the number of missing stones to have four connected stones. I then compute the sum over all those sets and subtract the same for the opponents stones.
+
+\subsection{Result}
+I did not manage to implement the alpha-beta pruning agent, so I cannot compare both agents. But I expect the latter one to consume less space ;-)
+
+
+
+\end{document}
