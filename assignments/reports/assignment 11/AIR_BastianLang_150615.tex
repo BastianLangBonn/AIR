@@ -1,0 +1,344 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{BRSU} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework for Artificial Intelligence for Robotics\\Assignment 11 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Bastian Lang} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+
+\section{Task 1}
+Let A, B and C be propositional formulas such that A and B entails C (A $\land$ B $\vDash$ C):
+\[A\land B\to C\]
+Then, is $(A\to C) \lor (B \to C)$ always true?\\
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+A&B&C&$A\land B$&$A\land B\vDash C$ & $A\to C$& $B\to C$&$(A\to C)\lor (B\to C)$\\
+\hline
++&+&+&+&+&+&+&+\\
++&+&-&+&-&-&-&-\\
++&-&+&-&+&+&+&+\\
++&-&-&-&+&-&+&+\\
+\hline
+-&+&+&-&+&+&+&+\\
+-&+&-&-&+&+&-&+\\
+-&-&+&-&+&+&+&+\\
+-&-&-&-&+&+&+&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 1}
+\label{tab:ex1}
+\end{table}
+
+$A\to C$ is only true iff $\neg A \lor C$ is true. Similar $(A\land B)\to C$ is true iff $\neg (A\land B)\lor C$ is true and $B\to C$ is true iff $\neg B\lor C$ is true.\\
+Using a truth table (table \ref{tab:ex1}) one can see that the term $(A\to C) \lor (B \to C)$ is true whenever $A\land B\to C$ is true.\\\qed
+
+\section{Task 2}
+\textbf{Prove the following:}\vspace{5mm}\\
+(a) \hspace{10mm}$\neg P\land\neg Q\Leftrightarrow\neg(P\lor Q)$\\
+(b) \hspace{10mm}$\neg (P\land Q) \Leftrightarrow\neg P\lor\neg Q$\\
+(c) \hspace{10mm}$P\lor (P\land Q)\Leftrightarrow P$\\
+
+\textbf{(a)}\\
+$\neg P\land\neg Q\Leftrightarrow\neg(P\lor Q)$\\
+
+According to the truth table \ref{tab:ex2a} this holds true.\\\qed
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+P&Q&$\neg P\land \neg Q$&$P\lor Q$&$\neg P\land \neg Q\Leftrightarrow\neg (P\lor Q)$\\
+\hline
++&+&-&+&+\\
++&-&-&+&+\\
+-&+&-&+&+\\
+-&-&+&-&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 2(a)}
+\label{tab:ex2a}
+\end{table}
+
+\textbf{(b)}\\
+$\neg (P\land Q) \Leftrightarrow\neg P\lor\neg Q$\\
+According to the truth table \ref{tab:ex2b} this holds true.\\\qed
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+P&Q&$\neg (P\land Q)$&$\neg P\lor \neg Q$&$\neg (P\land Q)\Leftrightarrow\neg P\lor \neg Q$\\
+\hline
++&+&-&-&+\\
++&-&+&+&+\\
+-&+&+&+&+\\
+-&-&+&+&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 2(b)}
+\label{tab:ex2b}
+\end{table}
+
+\textbf{(c)}\\
+$P\lor (P\land Q)\Leftrightarrow P$\\
+According to the truth table \ref{tab:ex2c} this holds true.\\\qed
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+P&Q&$P\land Q$&$P\lor (P\land Q)$&$P\lor (P\land Q)\Leftrightarrow P$\\
+\hline
++&+&+&+&+\\
++&-&-&+&+\\
+-&+&-&-&+\\
+-&-&-&-&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 2(c)}
+\label{tab:ex2c}
+\end{table}
+\newpage
+\section{Task 3}
+\textbf{Proove that:}\\
+\[P\to Q \vDash\neg Q\to\neg P\]
+The term: \[P\to Q \vDash\neg Q\to\neg P\]
+can be rephrased to:
+\[(P\to Q) \to(\neg Q\to\neg P)\equiv \neg (P\to Q) \lor(\neg Q\to\neg P)\]
+
+It is \[P\to Q\equiv \neg P\lor Q \]
+and:
+\[\neg (P\to Q)\equiv \neg (\neg P\lor Q)\equiv (P\land\neg Q)\]
+
+It is:
+\[\neg Q\to \neg P\equiv Q\lor\neg P\]\vspace{5mm}
+Therefore:
+\[(P\to Q \vDash\neg Q\to\neg P) \equiv ((P\land\neg Q)\lor (Q\lor\neg P))\]
+
+Truth table \ref{tab:ex3} then shows that this holds true.\\\qed
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+P&Q&$\neg P\lor Q$&$P\land\neg Q$&$Q\lor\neg P$&$(P\land\neg Q)\lor (Q\lor\neg P)$\\
+\hline
++&+&+&-&+&+\\
++&-&-&+&-&+\\
+-&+&+&-&+&+\\
+-&-&+&-&+&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 3}
+\label{tab:ex3}
+\end{table}
+
+\section{Task 4}
+\textit{What is Inference? What do we use it for in Artificial Intelligence? Give some examples.}\\
+
+Inference is "The act or process of deriving logical conclusions from premises known or assumed to be true." (http://www.thefreedictionary.com/inference).\\
+
+According to "The Role Of Logic In Artificial Intelligence" by Robert C. Moore in 1984 we can use Logic for three things:\\
+(1) as an analytical tool\\
+(2) as a knowledge representation formalism and method of reasoning\\
+(3) as a programming language\\
+
+In the Wumpus-World for example given an agents observations in one cell the agent can make predictions about neighbouring cells. A stench observed would for example lead to the conclusion that there is a wumpus in one of the neighbouring cells.\\
+
+
+
+\section{Task 5}
+Express the following sentences in propositional logic and determine if they are true or
+not:
+\begin{itemize}
+\item Either John isn't stupid and he is lazy, or he's stupid.\\
+John is stupid.\\
+Therefore, John isn't lazy.
+\item The butler and the cook are not both innocent.\\
+Either the butler is lying or the cook is innocent.\\
+Therefore, the butler is either lying or guilty.
+\end{itemize}
+
+\subsection{}
+(1) Either John isn't stupid and he is lazy, or he's stupid.\\
+(2) John is stupid.\\
+(3) Therefore, John isn't lazy.\\
+
+\textbf{Defining}:\\
+$A :=$ John is stupid\\
+$B :=$ John is lazy\\
+
+Then (1),(2) and (3) can be written as:\\
+(1) $(\neg A\land B)\lor A$\\
+(2) $A$\\
+(3) $(1)\land (2)\to\neg B\equiv \neg ((1)\land (2))\lor\neg B\equiv (\neg (1) \lor\neg (2))\lor\neg B)$\\
+Truth table \ref{tab:ex5.1} shows that statement (3) does not hold if John is stupid and lazy. (1) and (2) would be true, but John still would be lazy.\\\qed
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline
+(2): A&B&(1): $(\neg A\land B)\lor A$&(3): $\neg (1) \lor\neg (2))\lor\neg B$\\
+\hline
++&+&+&-\\
++&-&+&+\\
+-&+&+&+\\
+-&-&-&+\\
+\hline
+\end{tabular}
+\caption{Truth table for exercise 5.1}
+\label{tab:ex5.1}
+\end{table}
+
+\subsection{}
+(1) The butler and the cook are not both innocent.\\
+(2) Either the butler is lying or the cook is innocent.\\
+(3) Therefore, the butler is either lying or guilty.\\
+
+\textbf{Defining:}\\
+$B :=$ Butler is innocent\\
+$C :=$ Cook is innocent\\
+$B_L :=$ Butler is lying\\
+
+(1),(2) and (3) can be written as:\\
+(1) $\neg (B\land C)\equiv (\neg B\lor\neg C)$\\
+(2) $B_L\lor C$\\
+(3) $((1)\land (2))\to (B_L\lor\neg B)\equiv (\neg (1) \lor\neg (2)\lor B_L\lor \neg B)$\\
+
+Truth table \ref{tab:ex5.2} shows that statement (3) holds for every configuration of B, $B_L$ and C.\\\qed
+
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+B&$B_L$&C&(1): $\neg B\lor\neg C$&(2): $B_L\lor C$&(3): $\neg (1) \lor\neg (2)\lor B_L\lor \neg B$\\
+\hline
++&+&+&-&+&+\\
++&+&-&+&+&+\\
++&-&+&-&+&+\\
++&-&-&+&-&+\\
+-&+&+&+&+&+\\
+-&+&-&+&+&+\\
+-&-&+&+&+&+\\
+-&-&-&+&-&+\\
+
+\hline
+\end{tabular}
+\caption{Truth table for exercise 5.2}
+\label{tab:ex5.2}
+\end{table}
+
+\section{Task 6}
+Three students are suspects of plagiarism, but the teachers do not know which student did
+the original work and which students plagiarized. The students have been interrogated
+separately and their answers are:
+\begin{itemize}
+\item Student A says that if Student B did the original homework, then also Student C
+helped him do the original work.
+\item Student B says that if Student A did not do the original homework, then also Student
+C did not do the original work.
+\item Student C says that Student A did the original work, and Student B did not do the
+original work.
+\end{itemize}
+
+Then:\\
+(a) Are all declarations compatible between each other?\\
+(b) If all three students plagiarized each other, which student is lying?\\
+(c) If everyone is telling the truth, then who did the original work and who plagiarized?\\
+(d) If everyone is lying, then who did the original work and who plagiarized?\\
+
+\textbf{Define:}\\
+$A:=$ A did the original work\\
+$B:=$ B did the original work\\
+$C:=$ C did the original work\\
+
+Answers:\\
+(1) $B\to C\equiv\neg B\lor C$\\
+(2) $\neg A\to\neg C\equiv A\lor\neg C$\\
+(3) $A\land\neg B$\\
+
+According to the truth table \ref{tab:ex6}:\\
+(a) there is a configuration that all answers could be true when A and C did the original work. \\
+(b) ff all students plagiarized, then C would be lying (last line of table).\\
+(c) there are two possible configurations for all telling the truth. In both cases A and B did not plagiarize, but C could have done both. \\
+(d) it is not possible that all students are lying (last column of table).
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+A&B&C&(1)&(2)&(3)&$(1)\land (2)\land (3)$&$\neg (1)\land\neg (2)\land\neg (3)$\\
+\hline
++&+&+&+&+&-&-&-\\
++&+&-&-&+&-&-&-\\
++&-&+&+&+&+&+&-\\
++&-&-&+&+&+&+&-\\
+-&+&+&+&-&-&-&-\\
+-&+&-&-&+&-&-&-\\
+-&-&+&+&-&-&-&-\\
+-&-&-&+&+&-&-&-\\
+
+\hline
+\end{tabular}
+\caption{Truth table for exercise 6}
+\label{tab:ex6}
+\end{table}
+\end{document}
