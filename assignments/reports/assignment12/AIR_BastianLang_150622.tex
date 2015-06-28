@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{BRSU} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework for Artificial Intelligence for Robotics\\Assignment 11 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Bastian Lang} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+
+\section{Task 1}
+\textit{What are the performance differences between Backward and Forward Chaining?}
+
+Forward Chaining is data-driven and Backward Chaining is goal-driven. The complexity of Backward Chaining can be much less than linear in the size of KB.
+
+\section{Task 2}
+\textit{Can the following sentence be expressed in propositional logic, considering all real numbers?}
+\begin{itemize}
+\item \textit{Negative numbers don't have square roots.}
+\item \textit{Every positive number has exactly two square roots.}
+\end{itemize}
+
+To make a statement for every positive or negative number in propositional logic one would in theory have to enumerate every possible number and make a statement. Because the real numbers are non-denumerable it is not possible to express the above sentences using propositional logic.
+
+\section{Task 3}
+\textit{Represent the following sentences in first-order logic, using a consistent vocabulary (which
+you must define):}
+\begin{itemize}
+\item \textit{(a) A person born in the UK, each of whose parents is a UK citizen or a UK resident, is
+a UK citizen by birth.}
+\item \textit{(b) A person born outside the UK, one of whose parents is a UK citizen by birth, is a
+UK citizen by descent.}
+\item \textit{(c) Politicians can fool some of the people all of the time, and they can fool all of the
+people some of the time, but they can not fool all of the people all of the time.}
+\item \textit{(d) There is a barber who shaves all men in the town who do not shave themselves.}
+\item \textit{(e) The best score in Greek is always higher than the best score in French.}
+\end{itemize}
+
+\subsection{(a)}
+Let $P_i$ denote a person, $born\textunderscore in\textunderscore uk(P_i)$ evaluates true iff person $P_i$ is born in the UK, $citizen\textunderscore of\textunderscore uk(P_i)$ iff a person is citizen of the UK, $resident\textunderscore of\textunderscore uk(P_i)$ iff a person is a resident of the UK and $parent(P_i, P_j)$ iff $P_i$ is parent of $P_j$.
+
+Then (a) can be expressed as:\\
+$\forall P_1, P_2, P_3:$\\
+$(born\textunderscore in\textunderscore uk(P_3) \land parent(P_1,P_3)\land parent(P_2, P_3)$\\
+$\land (citizen\textunderscore of\textunderscore uk(P1)\lor resident\textunderscore of\textunderscore uk(P1))$\\
+$\land (citizen\textunderscore of\textunderscore uk(P_2)\lor resident\textunderscore of\textunderscore uk(P_2))$\\
+$\to citizen\textunderscore of\textunderscore uk\textunderscore by\textunderscore birth(P_3))$
+
+\subsection{(b)}
+$\forall P_1, P_2, P_3:$\\
+$(\neg born\textunderscore in\textunderscore uk(P_3)\land parent(P_1, P_3)\land parent(P_2, P_3)$\\
+$\land (citizen\textunderscore of\textunderscore uk\textunderscore by\textunderscore birth(P_1) \lor citizen\textunderscore of\textunderscore uk\textunderscore by\textunderscore birth(P_2)))$\\
+$\to citizen\textunderscore of\textunderscore uk\textunderscore by\textunderscore descent(P_3))$
+
+\subsection{(c)}
+
+\subsection{(d)}
+Let Barber(x) be true iff x is a barber, inTown(x) if x lives in town, man(x) iff x is a man and shaves(x,y) iff x shaves y. Then:\\
+
+$\exists x: barber(x)\land inTown(x)\land \forall y: man(y) \land inTown(y)\land ((shaves(x,y) \land \neg shaves(y,y))\lor shaves(y,y))$ 
+
+\subsection{(e)}
+
+
+\section{Task 4}
+\textit{PROLOG is a programming language commonly used for logic. It uses first-order logic.\\
+Learn some basic PROLOG 1 and write axioms describing the following relationships:\\
+Child, Grandchild, GreatGrandparent, Brother, Sister, Daughter, Son, Aunt, Uncle}\\
+
+parent(john, mary).\\
+parent(mary, william).\\
+parent(mary, emma).\\
+parent(william, sophia).\\
+parent(william, ryan).\\
+parent(william, jacob).\\
+parent(emma, joseph).\\
+parent(emma, olivia).\\
+parent(emma, emily).\\
+female(mary).\\
+female(sophia).\\
+female(emma).\\
+female(olivia).\\
+female(emily).\\
+male(john).\\
+male(william).\\
+male(ryan).\\
+male(jacob).\\
+male(joseph).\\
+child(X,Y) :- parent(Y,X).\\
+grandparent(X,Y) :- parent(X,Z), parent(Z,Y).\\
+brother(X,Y) :- parent(Z,X), parent(Z,Y), male(X), X \textbackslash =Y.\\
+sister(X,Y) :- parent(Z,X), parent(Z,Y), female(X), X \textbackslash = Y.\\
+uncle(X,Y) :- brother(X,Z), child(Y,Z).\\
+aunt(X,Y) :- sister(X,Z), child(Y,Z).\\
+daughter(X,Y) :- child(X,Y), female(Y).\\
+son(X,Y) :- child(X,Y), male(X).\\
+grandchild(X,Y) :- child(X,Z), child(Z,Y).\\
+greatgrandparent(X,Y) :- parent(X,Z), parent(Z,A), parent(A,Y).\\
+\end{document}
