@@ -70,25 +70,77 @@
 \maketitle % Print the title
 
 \section{Practical Part}
-\subsection{5 min}
+
+\subsection{Task}
+\textit{Solve the same Travelling Salesman Problem as the previous assignment, but using Simulated Annealing and all cities in the file. Get the best solution for different computation
+time (say 5, 10, 15 minutes).}
+
+\subsection{Approach}
+For this task I reused classes from the previous travelling salesman assignment to represent cities and solutions and to read the cities from the file. But I used another approach for the hill climbing algorithm. Instead of first computing every possible successor state and only then decide on the best one, I now create only one random successor state by swapping two cities and decide right away on sticking with it or dropping it.
+
+As a temperature I chose the remaining runtime of the algorithm. Initially the user can give a runtime (in minutes). The longer the algorithm runs, the smaller the temperature gets. If it becomes zero the algorithm stops. 
+
+For the probability to choose a worse successor I included a constant into the formula similar to the boltzmann constant, which is roughly $8.6 * 10^{-5}$ (I choose $10^{-6}$. 
+
+I executed the program for 5 min, 10 min, 15 minutes and 30 minutes. The results can be seen below.
+
+\subsection{Results}
+
+\subsubsection{5 min}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{5min.png}
+\caption{path after 5 minutes computation}
+\label{tenMin}
+\end{figure}
+
 Path length: 9012.441310
+
 Number of iterations: 2798073
-0.061399 percent of total iterations went upwards
 
-\subsection{10 min}
+0.061399 percent of total iterations chose a worse successor
+
+\subsubsection{10 min}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{10min.png}
+\caption{path after 10 minutes computation}
+\label{tenMin}
+\end{figure}
+
 Path length: 8194.656366
+
 Number of iterations: 5587871
-0.092987 percent of total iterations went upwards
 
-\subsection{15 min}
+0.092987 percent of total iterations chose a worse successor
+
+\subsubsection{15 min}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{15min.png}
+\caption{path after 15 minutes computation}
+\label{tenMin}
+\end{figure}
+
 Path length: 7959.778290
-Number of iterations: 8363361
-0.127281 percent of total iterations went upwards
 
-\subsection{30 min}
+Number of iterations: 8363361
+
+0.127281 percent of total iterations chose a worse successor
+
+\subsubsection{30 min}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{30min.png}
+\caption{path after 30 minutes computation}
+\label{tenMin}
+\end{figure}
+
 Path length: 5677.814568
+
 Number of iterations: 16751338
-0.196319 percent of total iterations went upwards
+
+0.196319 percent of total iterations chose a worse successor
 
 
 \section{Theoretical Part}
